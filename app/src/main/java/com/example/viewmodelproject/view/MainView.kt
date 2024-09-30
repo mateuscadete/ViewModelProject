@@ -5,24 +5,22 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.ui.Modifier
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.livedata.observeAsState
-import androidx.lifecycle.viewmodel.viewModelFactory
+import com.example.viewmodelproject.view.MainViewModel
+
 
 @Composable
-fun MainView(modifier: Modifier = Modifier . viewModel: MainViewModel) {
+fun MainView(mainViewModel: MainViewModel) {
 
-    val contador:Int by viewModel.contador.observeAsState(0)
+    val contador:Int by mainViewModel.contador.observeAsState(0)
 
     Column {
-        Text(text = "============")
-        Text(text = "============")
-        Text(text = "============")
-        Text(text = "============")
-        TextField(value = "asdf", onValueChange = {})
+        TextField(value = contador.toString(), onValueChange = {})
         Button(onClick = {
-            viewModel.incrementContador()
+            mainViewModel.incrementarContador()
 
         }) {
             Text(text = contador.toString())
